@@ -1,0 +1,9 @@
+<div
+    [attr.data-dot]="isInsideEditor ? 'row' : null"
+    [attr.data-testid]="isInsideEditor ? 'row' : null"
+    class="row"
+>
+    @for (column of row.columns; track $index) {
+        <app-column [column]="column"/>
+    }
+</div>

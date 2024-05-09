@@ -1,0 +1,35 @@
+@if (isInsideEditor) {
+    <div
+        data-testid="dot-container"
+        data-dot-object="container"
+        [attr.data-dot-accept-types]="containerData.acceptTypes"
+        [attr.data-dot-identifier]="container.identifier"
+        [attr.data-max-contentlets]="containerData.maxContentlets"
+        [attr.data-dot-uuid]="containerData.uuid"
+        [style]="containerStyles">
+
+    @if(contentlets.length){
+        @for (contentlet of contentlets; track $index) {
+            <div
+                data-testid="dot-contentlet"
+                data-dot-object="contentlet"
+                [attr.data-dot-identifier]="contentlet.identifier"
+                [attr.data-dot-basetype]="contentlet.baseType"
+                [attr.data-dot-title]="contentlet.widgetTitle || contentlet.title"
+                [attr.data-dot-inode]="contentlet.inode"
+                [attr.data-dot-type]="contentlet.contentType"
+                [attr.data-dot-container]="stringifyContainer"
+                [attr.data-dot-on-number-of-pages]="contentlet.onNumberOfPages">
+                        <ng-container *ngComponentOutlet="(COMPONENTS[contentlet.contentType]  | async) || NoComponent; inputs: {contentlet}" ></ng-container>
+            </div>
+        }
+
+    }@else {
+        This container is empty.
+    }
+</div>
+}@else {
+    @for (contentlet of contentlets; track $index) {
+        <ng-container *ngComponentOutlet="(COMPONENTS[contentlet.contentType]  | async) || NoComponent; inputs: {contentlet}"></ng-container>
+    }
+}

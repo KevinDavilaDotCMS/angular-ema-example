@@ -1,0 +1,9 @@
+<div
+    [attr.data-dot]="isInsideEditor ? 'column' : null"
+    [attr.data-testid]="isInsideEditor ? 'column' : null"
+    [class]="classes.startClass +' '+ classes.endClass"
+>
+    @for (container of column.containers; track $index) {
+        <app-container [container]="container" />
+    }
+</div>
