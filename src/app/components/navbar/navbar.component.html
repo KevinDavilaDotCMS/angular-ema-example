@@ -1,0 +1,17 @@
+<header class="flex items-center justify-between p-4 bg-purple-500">
+    <div class="flex items-center">
+        <h2 class="text-3xl font-bold text-white">
+            <a href="/">TravelLux</a>
+        </h2>
+    </div>
+    <nav>
+        <ul class="flex space-x-4 text-white">
+            <li>
+                <a (click)="navigateTo({ href: '/', title: 'Home' })">Home</a>
+            </li>
+            <li *ngFor="let item of items">
+                <a (click)="navigateTo(item)">{{ item.title }}</a>
+            </li>
+        </ul>
+    </nav>
+</header>
